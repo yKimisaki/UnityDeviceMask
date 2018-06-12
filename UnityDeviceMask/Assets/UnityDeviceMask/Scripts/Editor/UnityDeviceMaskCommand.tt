@@ -1,0 +1,50 @@
+﻿<#@ template language="cs" #>
+<#@ output extension=".cs" #>  
+<#@ assembly name="$(SolutionDir)\\Library\\ScriptAssemblies\\Assembly-CSharp.dll" #>  
+<#@ import namespace="Tonari.Unity.UnityDeviceMask" #>  
+using System;
+using UnityEditor;
+
+namespace Tonari.Unity.UnityDeviceMask
+{
+    internal static class UnityDeviceMaskCommand
+    {
+        private const string CommandParentHierarchy = "Tonari/UnityDeviceMask/";
+
+<# 
+foreach(UnityDeviceMaskType value in Enum.GetValues(typeof(UnityDeviceMaskType)))
+{
+ #>
+        [MenuItem(CommandParentHierarchy + "<#= value.ToString() #>", isValidateFunction: false)]
+        public static void Set<#= value.ToString() #>()
+        {
+            SetMaskTypeCore(UnityDeviceMaskType.<#= value.ToString() #>);
+        }
+		
+        [MenuItem(CommandParentHierarchy + "<#= value.ToString() #>", isValidateFunction: true)]
+        private static bool IsSet<#= value.ToString() #>()
+        {
+            SetMaskTypeCore(UnityDeviceMaskSetting.UnityDeviceMaskType);
+			return true;
+        }
+
+<# 
+}
+ #>
+
+        private static void SetMaskTypeCore(UnityDeviceMaskType maskType)
+        {
+            foreach(UnityDeviceMaskType value in Enum.GetValues(typeof(UnityDeviceMaskType)))
+            {
+                if (value != maskType)
+                {
+                    Menu.SetChecked(CommandParentHierarchy + value.ToString(), false);
+                    continue;
+                }
+
+                Menu.SetChecked(CommandParentHierarchy + value.ToString(), true);
+                UnityDeviceMaskSetting.UnityDeviceMaskType = value;
+            }
+        }
+    }
+}
