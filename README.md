@@ -20,7 +20,7 @@ UnityDeviceMaskTypeを追加すると、デバイスが増えます。
 
 ![image](https://user-images.githubusercontent.com/1702680/41350286-9b2bc45a-6f4d-11e8-96bd-8cb2cdb7a20c.png)
 
-自動で画面サイズが追加されます。
+自動で画面サイズが追加、選択されます。
 
 マスク画像は、enumに追加した値と同じ名前の画像をResources/Texturesに追加すると、その画像を読み込んで使います。
 
