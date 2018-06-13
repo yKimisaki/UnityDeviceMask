@@ -8,6 +8,7 @@ namespace Tonari.Unity.UnityDeviceMask
     {
         None = 0,
 
+        [UnityDeviceResolution(1125, 2436)]
         iPhoneX_Portrait = 1,
     }
 

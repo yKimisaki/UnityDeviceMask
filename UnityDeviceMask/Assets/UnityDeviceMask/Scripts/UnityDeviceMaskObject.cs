@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -43,7 +42,7 @@ namespace Tonari.Unity.UnityDeviceMask
             var sprite = Resources.Load<Sprite>("Textures/" + UnityDeviceMaskSetting.UnityDeviceMaskType.ToString());
             if (sprite == null)
             {
-                throw new InvalidOperationException(UnityDeviceMaskSetting.UnityDeviceMaskType.ToString() + "に該当するマスク画像が見つかりませんでした。");
+                Debug.unityLogger.LogError("UnityDeviceMask", UnityDeviceMaskSetting.UnityDeviceMaskType.ToString() + "に該当するマスク画像が見つかりませんでした。");
             }
 
             this.RefreshTag();
