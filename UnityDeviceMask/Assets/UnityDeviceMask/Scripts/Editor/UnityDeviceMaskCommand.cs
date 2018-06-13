@@ -3,6 +3,7 @@
   
 using System;
 using UnityEditor;
+using Object = UnityEngine.Object;
 
 namespace Tonari.Unity.UnityDeviceMask
 {
@@ -15,12 +16,12 @@ namespace Tonari.Unity.UnityDeviceMask
         {
             SetMaskTypeCore(UnityDeviceMaskType.None);
         }
-		
+        
         [MenuItem(CommandParentHierarchy + "None", isValidateFunction: true)]
         private static bool IsSetNone()
         {
             SetMaskTypeCore(UnityDeviceMaskSetting.UnityDeviceMaskType);
-			return true;
+            return true;
         }
 
         [MenuItem(CommandParentHierarchy + "iPhoneX_Portrait", isValidateFunction: false)]
@@ -28,12 +29,12 @@ namespace Tonari.Unity.UnityDeviceMask
         {
             SetMaskTypeCore(UnityDeviceMaskType.iPhoneX_Portrait);
         }
-		
+        
         [MenuItem(CommandParentHierarchy + "iPhoneX_Portrait", isValidateFunction: true)]
         private static bool IsSetiPhoneX_Portrait()
         {
             SetMaskTypeCore(UnityDeviceMaskSetting.UnityDeviceMaskType);
-			return true;
+            return true;
         }
 
 
@@ -50,6 +51,21 @@ namespace Tonari.Unity.UnityDeviceMask
                 Menu.SetChecked(CommandParentHierarchy + value.ToString(), true);
                 UnityDeviceMaskSetting.UnityDeviceMaskType = value;
             }
+
+            // お掃除
+            foreach (var gabage in Object.FindObjectsOfType<UnityDeviceMaskObject>())
+            {
+                Object.DestroyImmediate(gabage.gameObject);
+            }
+
+            if (maskType == UnityDeviceMaskType.None)
+            {
+                return;
+            }
+            
+            // 生成
+            var instance = Object.Instantiate(UnityEngine.Resources.Load<UnityDeviceMaskObject>("UnityDeviceMask"));
+            instance.Initialize();
         }
     }
 }

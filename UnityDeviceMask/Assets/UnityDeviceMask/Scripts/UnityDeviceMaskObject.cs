@@ -18,7 +18,7 @@ namespace Tonari.Unity.UnityDeviceMask
         public CanvasScaler CanvasScaler;
         public Image MaskImage;
 
-        void Start()
+        private void Start()
         {
             // シングルトンとする
             if (_instance != null)
@@ -26,7 +26,14 @@ namespace Tonari.Unity.UnityDeviceMask
                 Destroy(this.gameObject);
                 return;
             }
-            
+
+            this.Initialize();
+
+            _instance = this;
+        }
+
+        public void Initialize()
+        {
             if (UnityDeviceMaskSetting.UnityDeviceMaskType == UnityDeviceMaskType.None)
             {
                 Destroy(this.gameObject);
@@ -43,7 +50,7 @@ namespace Tonari.Unity.UnityDeviceMask
 
             this.gameObject.tag = UnityDeviceMaskSetting.UnityDeviceMaskTag;
             this.gameObject.layer = UnityDeviceMaskSetting.UnityDeviceMaskLayer;
-            
+
             this.Camera.cullingMask = 1 << UnityDeviceMaskSetting.UnityDeviceMaskLayer;
             this.Camera.depth = UnityDeviceMaskSetting.CanvasSoringOrder;
 
@@ -53,11 +60,9 @@ namespace Tonari.Unity.UnityDeviceMask
             this.CanvasScaler.referenceResolution = new Vector2(sprite.texture.width, sprite.texture.height);
             this.MaskImage.sprite = sprite;
             this.MaskImage.gameObject.layer = UnityDeviceMaskSetting.UnityDeviceMaskLayer;
-
-            _instance = this;
         }
 
-        void RefreshTag()
+        private void RefreshTag()
         {
             var rawAsset = AssetDatabase.LoadAssetAtPath<Object>("ProjectSettings/TagManager.asset");
             if (rawAsset != null)

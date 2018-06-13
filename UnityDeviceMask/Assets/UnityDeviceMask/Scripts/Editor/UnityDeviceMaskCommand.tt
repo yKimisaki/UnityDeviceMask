@@ -4,6 +4,7 @@
 <#@ import namespace="Tonari.Unity.UnityDeviceMask" #>  
 using System;
 using UnityEditor;
+using Object = UnityEngine.Object;
 
 namespace Tonari.Unity.UnityDeviceMask
 {
@@ -20,12 +21,12 @@ foreach(UnityDeviceMaskType value in Enum.GetValues(typeof(UnityDeviceMaskType))
         {
             SetMaskTypeCore(UnityDeviceMaskType.<#= value.ToString() #>);
         }
-		
+        
         [MenuItem(CommandParentHierarchy + "<#= value.ToString() #>", isValidateFunction: true)]
         private static bool IsSet<#= value.ToString() #>()
         {
             SetMaskTypeCore(UnityDeviceMaskSetting.UnityDeviceMaskType);
-			return true;
+            return true;
         }
 
 <# 
@@ -45,6 +46,21 @@ foreach(UnityDeviceMaskType value in Enum.GetValues(typeof(UnityDeviceMaskType))
                 Menu.SetChecked(CommandParentHierarchy + value.ToString(), true);
                 UnityDeviceMaskSetting.UnityDeviceMaskType = value;
             }
+
+            // お掃除
+            foreach (var gabage in Object.FindObjectsOfType<UnityDeviceMaskObject>())
+            {
+                Object.DestroyImmediate(gabage.gameObject);
+            }
+
+            if (maskType == UnityDeviceMaskType.None)
+            {
+                return;
+            }
+            
+            // 生成
+            var instance = Object.Instantiate(UnityEngine.Resources.Load<UnityDeviceMaskObject>("UnityDeviceMask"));
+            instance.Initialize();
         }
     }
 }
