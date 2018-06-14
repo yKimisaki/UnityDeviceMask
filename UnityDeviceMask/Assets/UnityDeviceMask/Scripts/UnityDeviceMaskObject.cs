@@ -41,7 +41,7 @@ namespace Tonari.Unity.UnityDeviceMask
             var sprite = Resources.Load<Sprite>("Textures/" + UnityDeviceMaskSetting.UnityDeviceMaskType.ToString());
             if (sprite == null)
             {
-                Debug.unityLogger.LogError("UnityDeviceMask", UnityDeviceMaskSetting.UnityDeviceMaskType.ToString() + "に該当するマスク画像が見つかりませんでした。");
+                Debug.unityLogger.LogWarning("UnityDeviceMask", UnityDeviceMaskSetting.UnityDeviceMaskType.ToString() + "に該当するマスク画像が見つかりませんでした。");
             }
 
             this.gameObject.layer = UnityDeviceMaskSetting.UnityDeviceMaskLayer;
@@ -51,8 +51,9 @@ namespace Tonari.Unity.UnityDeviceMask
 
             this.Canvas.sortingOrder = UnityDeviceMaskSetting.CanvasSoringOrder;
             this.Canvas.gameObject.layer = UnityDeviceMaskSetting.UnityDeviceMaskLayer;
-
+            
             this.MaskImage.sprite = sprite;
+            this.MaskImage.color = sprite == null ? Color.clear : Color.white;
             this.MaskImage.gameObject.layer = UnityDeviceMaskSetting.UnityDeviceMaskLayer;
         }
 #else
