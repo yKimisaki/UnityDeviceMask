@@ -8,8 +8,6 @@ namespace Tonari.Unity.UnityDeviceMask
 {
     internal static partial class UnityDeviceMaskCommand
     {
-        private const string CommandParentHierarchy = "Tonari/UnityDeviceMask/";
-
 <# 
 foreach(UnityDeviceMaskType value in Enum.GetValues(typeof(UnityDeviceMaskType)))
 {
