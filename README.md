@@ -6,7 +6,7 @@
 
 # 配置
 
-UnityDeviceMaskというPrefabがあるので、それをシーンに配置するだけです。
+Tonari/UnityDeviceMaskの下に端末の一覧が出るので、それを選択するだけ。
 
 ![image](https://user-images.githubusercontent.com/1702680/41350388-f875073e-6f4d-11e8-9f7c-73ea947a8bdb.png)
 
