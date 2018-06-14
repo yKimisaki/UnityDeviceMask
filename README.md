@@ -5,15 +5,26 @@ iPhone Xとかのアールをエディタ上で検証したい
 
 UnityDeviceMaskというPrefabがあるので、それをシーンに配置するだけです。
 
-![image](https://user-images.githubusercontent.com/1702680/41279931-b34291e4-6e68-11e8-8947-f733d1b8e814.png)
+![image](https://user-images.githubusercontent.com/1702680/41350388-f875073e-6f4d-11e8-9f7c-73ea947a8bdb.png)
 
-![image](https://user-images.githubusercontent.com/1702680/41279965-c75e94c0-6e68-11e8-97fa-d524a9965721.png)
+![image](https://user-images.githubusercontent.com/1702680/41350355-df57884e-6f4d-11e8-9030-933ecf5e4995.png)
 
 # デバイスの追加とその他の編集
 
 UnityDeviceMaskSettingsに一通りあります。
+
+![image](https://user-images.githubusercontent.com/1702680/41350190-44ca8e52-6f4d-11e8-84d5-cacacdb2d9fa.png)
+
 UnityDeviceMaskTypeを追加すると、デバイスが増えます。
-enumに追加した値と同じ名前の画像をResources/Texturesに追加すると、その画像を読み込んで使います。
+この時、UnityDeviceResolution属性を付けておくと、エディタ上でマスクを適応した時に
+
+![image](https://user-images.githubusercontent.com/1702680/41350286-9b2bc45a-6f4d-11e8-96bd-8cb2cdb7a20c.png)
+
+自動で画面サイズが追加、選択されます。
+
+マスク画像は、enumに追加した値と同じ名前の画像をResources/Texturesに追加すると、その画像を読み込んで使います。
+
+![image](https://user-images.githubusercontent.com/1702680/41350405-04cd8ede-6f4e-11e8-9f7c-cf7ebed7207d.png)
 
 # 通しで見たい
 
