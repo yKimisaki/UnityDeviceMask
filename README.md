@@ -18,7 +18,7 @@ UnityDeviceMaskSettingsに一通りあります。
 
 ![image](https://user-images.githubusercontent.com/1702680/41390421-81408c28-6fd0-11e8-98c8-9f2a4713fa3a.png)
 
-UnityDeviceMaskTypeを追加すると、デバイスが増えます。
+UnityDeviceMaskTypeを追加し、Assembly-CSharp.dllを作った後にUnityDeviceMaskCommand.ttを実行すると、対応デバイスが増えます。
 この時、GameViewSize属性を付けておくと、エディタ上でマスクを適応した時に
 
 ![image](https://user-images.githubusercontent.com/1702680/41390444-94147404-6fd0-11e8-99c8-e5859f656f5e.png)
