@@ -17,8 +17,6 @@ namespace Tonari.Unity.UnityDeviceMask
         public const string UnityDeviceMaskSetting_Key = "UnityDeviceMaskSetting";
 
         public const int UnityDeviceMaskLayer = 30;
-        public const string UnityDeviceMaskTag = "UnityDeviceMask";
-
         public const int CanvasSoringOrder = (int)short.MaxValue;
 
         public static UnityDeviceMaskType UnityDeviceMaskType
