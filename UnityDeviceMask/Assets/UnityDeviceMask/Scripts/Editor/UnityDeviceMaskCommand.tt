@@ -1,4 +1,4 @@
-﻿<#@ template language="cs" #>
+﻿<#@ template language="C#" #>
 <#@ output extension=".cs" #>  
 <#@ assembly name="$(SolutionDir)\\Library\\ScriptAssemblies\\Assembly-CSharp.dll" #>  
 <#@ import namespace="Tonari.Unity.UnityDeviceMask" #>  
