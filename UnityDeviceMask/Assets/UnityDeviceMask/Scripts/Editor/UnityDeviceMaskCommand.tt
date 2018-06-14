@@ -21,7 +21,7 @@ foreach(UnityDeviceMaskType value in Enum.GetValues(typeof(UnityDeviceMaskType))
         public static void Set<#= value.ToString() #>()
         {
             SetMaskTypeCore(UnityDeviceMaskType.<#= value.ToString() #>);
-            Cleaning();
+            UpdateMask();
         }
         
         [MenuItem(CommandParentHierarchy + "<#= value.ToString() #>", isValidateFunction: true)]
@@ -50,7 +50,7 @@ foreach(UnityDeviceMaskType value in Enum.GetValues(typeof(UnityDeviceMaskType))
             }
         }
 
-        private static void Cleaning()
+        private static void UpdateMask()
         {
             var maskType = UnityDeviceMaskSetting.UnityDeviceMaskType;
 
@@ -65,7 +65,7 @@ foreach(UnityDeviceMaskType value in Enum.GetValues(typeof(UnityDeviceMaskType))
                 return;
             }
 
-            // GameViewSizeAttributeが設定されてたらGameViewに親切に設定
+            // GameViewSizeAttributeが設定されてたらGameViewに設定
             var memberInfos = typeof(UnityDeviceMaskType).GetMember(maskType.ToString());
             var resolutionAttributes = memberInfos[0].GetCustomAttributes(typeof(GameViewSizeAttribute), false);
             if (resolutionAttributes.Length != 0)

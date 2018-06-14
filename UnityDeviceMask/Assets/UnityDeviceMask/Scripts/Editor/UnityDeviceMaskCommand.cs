@@ -16,7 +16,7 @@ namespace Tonari.Unity.UnityDeviceMask
         public static void SetNone()
         {
             SetMaskTypeCore(UnityDeviceMaskType.None);
-            Cleaning();
+            UpdateMask();
         }
         
         [MenuItem(CommandParentHierarchy + "None", isValidateFunction: true)]
@@ -30,7 +30,7 @@ namespace Tonari.Unity.UnityDeviceMask
         public static void SetiPhoneX_Portrait()
         {
             SetMaskTypeCore(UnityDeviceMaskType.iPhoneX_Portrait);
-            Cleaning();
+            UpdateMask();
         }
         
         [MenuItem(CommandParentHierarchy + "iPhoneX_Portrait", isValidateFunction: true)]
@@ -44,7 +44,7 @@ namespace Tonari.Unity.UnityDeviceMask
         public static void SetiPhone5_Portrait_Relative()
         {
             SetMaskTypeCore(UnityDeviceMaskType.iPhone5_Portrait_Relative);
-            Cleaning();
+            UpdateMask();
         }
         
         [MenuItem(CommandParentHierarchy + "iPhone5_Portrait_Relative", isValidateFunction: true)]
@@ -70,7 +70,7 @@ namespace Tonari.Unity.UnityDeviceMask
             }
         }
 
-        private static void Cleaning()
+        private static void UpdateMask()
         {
             var maskType = UnityDeviceMaskSetting.UnityDeviceMaskType;
 
@@ -85,7 +85,7 @@ namespace Tonari.Unity.UnityDeviceMask
                 return;
             }
 
-            // GameViewSizeAttributeが設定されてたらGameViewに親切に設定
+            // GameViewSizeAttributeが設定されてたらGameViewに設定
             var memberInfos = typeof(UnityDeviceMaskType).GetMember(maskType.ToString());
             var resolutionAttributes = memberInfos[0].GetCustomAttributes(typeof(GameViewSizeAttribute), false);
             if (resolutionAttributes.Length != 0)
