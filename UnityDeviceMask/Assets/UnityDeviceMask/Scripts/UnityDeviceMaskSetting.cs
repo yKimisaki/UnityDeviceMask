@@ -6,10 +6,13 @@ namespace Tonari.Unity.UnityDeviceMask
 {
     public enum UnityDeviceMaskType
     {
-        None = 0,
+        None,
 
-        [UnityDeviceResolution(1125, 2436)]
-        iPhoneX_Portrait = 1,
+        [GameViewSize(GameViewSizeType.FixedResolution, 1125, 2436)]
+        iPhoneX_Portrait,
+
+        [GameViewSize(GameViewSizeType.AspectRatio, 9, 16)]
+        iPhone5_Portrait_Relative,
     }
 
     public static class UnityDeviceMaskSetting

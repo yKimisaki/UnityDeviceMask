@@ -40,6 +40,20 @@ namespace Tonari.Unity.UnityDeviceMask
             return true;
         }
 
+        [MenuItem(CommandParentHierarchy + "iPhone5_Portrait_Relative", isValidateFunction: false)]
+        public static void SetiPhone5_Portrait_Relative()
+        {
+            SetMaskTypeCore(UnityDeviceMaskType.iPhone5_Portrait_Relative);
+            Cleaning();
+        }
+        
+        [MenuItem(CommandParentHierarchy + "iPhone5_Portrait_Relative", isValidateFunction: true)]
+        private static bool IsSetiPhone5_Portrait_Relative()
+        {
+            SetMaskTypeCore(UnityDeviceMaskSetting.UnityDeviceMaskType);
+            return true;
+        }
+
 
         private static void SetMaskTypeCore(UnityDeviceMaskType maskType)
         {
@@ -71,12 +85,12 @@ namespace Tonari.Unity.UnityDeviceMask
                 return;
             }
 
-            // UnityDeviceResolutionAttributeが設定されてたらGameViewに親切に設定
+            // GameViewSizeAttributeが設定されてたらGameViewに親切に設定
             var memberInfos = typeof(UnityDeviceMaskType).GetMember(maskType.ToString());
-            var resolutionAttributes = memberInfos[0].GetCustomAttributes(typeof(UnityDeviceResolutionAttribute), false);
+            var resolutionAttributes = memberInfos[0].GetCustomAttributes(typeof(GameViewSizeAttribute), false);
             if (resolutionAttributes.Length != 0)
             {
-                var resolutionAttribute = (UnityDeviceResolutionAttribute)resolutionAttributes[0];
+                var resolutionAttribute = (GameViewSizeAttribute)resolutionAttributes[0];
 
                 var gameViewSizes = typeof(Editor).Assembly.GetType("UnityEditor.GameViewSizes");
                 var scriptableSingleton = typeof(ScriptableSingleton<>).MakeGenericType(gameViewSizes);
@@ -108,7 +122,7 @@ namespace Tonari.Unity.UnityDeviceMask
                     var addCustomSize = getGroup.ReturnType.GetMethod("AddCustomSize");
                     var gameViewSize = typeof(Editor).Assembly.GetType("UnityEditor.GameViewSize");
                     var constructor = gameViewSize.GetConstructor(new Type[] { typeof(int), typeof(int), typeof(int), typeof(string) });
-                    var newSize = constructor.Invoke(new object[] { 1 /* = FixedResolution */, resolutionAttribute.Width, resolutionAttribute.Height, maskType.ToString() });
+                    var newSize = constructor.Invoke(new object[] { (int)resolutionAttribute.GameViewSizeType, resolutionAttribute.Width, resolutionAttribute.Height, maskType.ToString() });
                     addCustomSize.Invoke(group, new object[] { newSize });
                 }
 
