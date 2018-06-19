@@ -73,7 +73,7 @@ namespace Tonari.Unity.UnityDeviceMask
                     // サイズを追加
                     var addCustomSize = getGroup.ReturnType.GetMethod("AddCustomSize");
                     var gameViewSize = typeof(Editor).Assembly.GetType("UnityEditor.GameViewSize");
-#if UNITY_2018_1_OR_NEWER
+#if UNITY_2017_4_OR_NEWER
                     var gameViewSizeType = typeof(Editor).Assembly.GetType("UnityEditor.GameViewSizeType");
                     var constructor = gameViewSize.GetConstructor(new Type[] { gameViewSizeType, typeof(int), typeof(int), typeof(string) });
 #else
